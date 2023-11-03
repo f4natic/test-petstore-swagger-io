@@ -10,7 +10,8 @@ repositories {
 }
 
 dependencies {
-    testImplementation("org.testng:testng:6.14.3")
+    testImplementation("org.testng:testng:7.8.0")
+    testImplementation("io.rest-assured:rest-assured:5.3.2")
 }
 
 tasks.getByName<Test>("test") {
@@ -19,6 +20,6 @@ tasks.getByName<Test>("test") {
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(11));
+        languageVersion.set(JavaLanguageVersion.of(17));
     }
 }
