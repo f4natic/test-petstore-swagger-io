@@ -1,3 +1,6 @@
+import io.qameta.allure.gradle.base.AllureExtension
+import io.qameta.allure.gradle.report.tasks.AllureServe
+
 plugins {
     id("java")
     id("io.qameta.allure") version "2.11.2"
@@ -19,6 +22,12 @@ dependencies {
 tasks.getByName<Test>("test") {
     useTestNG() {
         suites("src/test/resources/testng.xml")
+    }
+}
+
+allure {
+    tasks.withType<AllureServe>().configureEach {
+        port.set(8080)
     }
 }
 
