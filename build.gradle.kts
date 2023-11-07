@@ -28,6 +28,7 @@ tasks.getByName<Test>("test") {
 allure {
     tasks.withType<AllureServe>().configureEach {
         port.set(8080)
+        host.set("localhost")
     }
 }
 
