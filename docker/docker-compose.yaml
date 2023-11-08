@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  petstore-source:
+    image: alpine/git
+    working_dir: /app
+    volumes:
+      - test_data:/app/test-petstore-swagger-io
+    command: clone https://github.com/f4natic/test-petstore-swagger-io.git -b develop
+
+  petstore-test:
+    image: gradle:8.4.0-jdk17-alpine
+    container_name: petstore-test
+    working_dir: /app
+    command: gradle test allureReport allureServe
+    ports:
+      - "8080:8080"
+    depends_on:
+      - petstore-source
+    volumes:
+      - test_data:/app
+
+volumes:
+  test_data:
+    driver: local
